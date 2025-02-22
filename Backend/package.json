@@ -1,0 +1,28 @@
+{
+  "name": "test",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "run": "node server.js",
+    "typeorm": "npx typeorm",
+    "migration:generate": "npx typeorm migration:generate -d ./config/data-source.js -o",
+    "migration:run": "npx typeorm migration:run -d ./config/data-source.js",
+    "migration:revert": "npx typeorm migration:revert -d ./config/data-source.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "pg": "^8.13.3",
+    "reflect-metadata": "^0.2.2",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1",
+    "typeorm": "^0.3.20"
+  }
+}
