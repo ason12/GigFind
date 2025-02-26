@@ -1,0 +1,275 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.4rem 4rem;
+  background-color: var(--background);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+}
+
+.nav-logo {
+  flex: 0 0 auto;
+  transition: transform 0.3s ease;
+  padding: 4px;
+}
+
+.nav-logo:hover {
+  transform: scale(1.05);
+}
+
+.logo {
+  width: 105px;
+  height: auto;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.nav-icons {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.icon {
+  font-size: 1.5rem;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.icon:hover {
+  color: var(--primary);
+  transform: scale(1.1) rotate(5deg);
+}
+
+.menu-icon {
+  display: none;
+  font-size: 1.5rem;
+  color: var(--text-color);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.menu-icon:hover {
+  transform: scale(1.1);
+  color: var(--primary);
+}
+
+.mobile-nav {
+  display: none;
+  transform: translateY(-20px);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.mobile-nav.active {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 45px;
+  left: 0;
+  right: 0;
+  background-color: var(--background);
+  padding: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Updated Responsive Design */
+@media screen and (max-width: 1024px) {
+  .navbar {
+    padding: 0.4rem 3rem;
+  }
+
+  .nav-actions {
+    gap: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .navbar {
+    padding: 0.6rem 2rem;
+  }
+
+  .logo {
+    width: 95px;
+  }
+
+  .nav-icons {
+    gap: 0.8rem;
+  }
+
+  .icon {
+    font-size: 1.3rem;
+  }
+}
+
+@media screen and (max-width: 576px) {
+  .navbar {
+    padding: 0.4rem 1rem;
+  }
+
+  .logo {
+    width: 75px;
+  }
+
+  .nav-icons {
+    display: none;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  .mobile-nav {
+    padding: 1rem;
+    max-height: calc(100vh - 60px);
+    overflow-y: auto;
+  }
+
+  .mobile-nav .nav-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    align-items: stretch;
+  }
+
+  .mobile-nav .nav-icons {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    padding: 0.5rem 0;
+  }
+
+  .mobile-nav .icon {
+    font-size: 1.4rem;
+  }
+}
+
+/* Add smooth transition for mobile menu */
+.mobile-nav {
+  transition: all 0.3s ease-in-out;
+  background-color: var(--background);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.nav-center {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  max-width: 600px;
+  margin: 0 2rem;
+  opacity: 0;
+  transform: translateY(-20px);
+  transition: all 0.3s ease;
+}
+
+.nav-center.show-search {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.search-form {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+}
+
+.search-form input {
+  width: 100%;
+  padding: 0.6rem 1rem;
+  padding-right: 3rem;
+  border: 1px solid black;
+  border-radius: 25px;
+  background-color: var(--background);
+  color: var(--text-color);
+  font-size: 0.9rem;
+  transition: all 0.3s ease;
+}
+
+.search-form input::placeholder {
+  color: var(--text-color-secondary);
+  opacity: 0.7;
+}
+
+.search-form input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 2px rgba(var(--primary-rgb), 0.1);
+}
+
+.search-form button {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  color: var(--text-color);
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.search-form button:hover {
+  color: var(--primary);
+  transform: scale(1.1);
+}
+
+.search-form button:focus {
+  outline: none;
+}
+
+/* Update mobile responsiveness */
+@media screen and (max-width: 768px) {
+  .nav-center,
+  .nav-center.show-search {
+    display: none;
+  }
+
+  .mobile-nav .search-form {
+    margin: 1rem 0;
+  }
+}
+
+/* Update mobile menu to include search */
+.mobile-nav.active {
+  .search-form {
+    margin: 1rem 0;
+    width: 100%;
+  }
+}

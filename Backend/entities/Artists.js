@@ -24,7 +24,7 @@ const Artists = new EntitySchema({
       nullable: true, // Optional
     },
 
-    cover_photos: {
+    cover_photo: {
       type: "varchar",
       nullable: true,
     },
@@ -34,9 +34,47 @@ const Artists = new EntitySchema({
       nullable: true, // Optional
     },
     genres: {
-      type: "simple-array", // Array of strings
+      type: "enum",
+      enum: [
+        "Pop",
+        "Folk",
+        "Rock",
+        "Hip-hop/Rap",
+        "Indie",
+        "Classical",
+        "EDM",
+        "Electrical",
+        "Alternative Rock",
+        "Reggae",
+        "Blues",
+        "Jazz",
+        "R&B/Soul",
+        "Metal",
+        "Psychedelic",
+        "Ballad",
+        "Fusion",
+        "Punk",
+        "Country",
+        "Funk",
+        "Post-Rock",
+        "K-POP",
+        "Lok Geet",
+        "Newari",
+        "Bhajan",
+        "Spiritual",
+        "Cultural",
+        "Religious",
+        "Others",
+      ],
+      array: true, // This allows multiple genres to be selected
       nullable: true,
     },
+
+    address: {
+      type: "varchar",
+      nullable: true,
+    },
+
     base_price: {
       type: "decimal",
       precision: 10,
@@ -54,19 +92,26 @@ const Artists = new EntitySchema({
       nullable: true,
       default: "[]", // Default to empty JSON array
     },
+    mainstream: {
+      type: "boolean",
+      default: false, // Default value is false
+      nullable: false, // Cannot be null
+    },
     created_at: {
       type: "timestamp",
       createDate: true, // Automatically set when the record is created
     },
+   
   },
   relations: {
-    manager: {  // Use lowercase 'manager' instead of 'Managers'
-        target: "Managers",
-        type: "many-to-one",
-        joinColumn: { name: "m_id" },
-        nullable: true
-    }
-}
+    manager: {
+      // Use lowercase 'manager' instead of 'Managers'
+      target: "Managers",
+      type: "many-to-one",
+      joinColumn: { name: "m_id" },
+      nullable: true,
+    },
+  },
 });
 
 module.exports = Artists;

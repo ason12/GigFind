@@ -1,0 +1,239 @@
+.artist-description-page {
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  color: var(--text-color);
+  overflow-x: hidden;
+}
+
+.artist-hero-section {
+  position: relative;
+  width: 100vw;
+  height: 60vh;
+  overflow: hidden;
+}
+
+.artist-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+}
+
+.artist-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  z-index: 2;
+}
+
+.artist-details-container {
+  max-width: 1400px;
+  margin: -100px auto 0;
+  padding: 0 20px;
+  position: relative;
+  z-index: 3;
+}
+
+.artist-profile-card {
+  background: white;
+  border-radius: 16px;
+  padding: 30px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+}
+
+.artist-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.artist-info {
+  flex: 1;
+}
+
+.artist-name {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 10px;
+}
+
+.artist-real-name {
+  font-size: 1.2rem;
+  color: #666;
+  font-style: italic;
+}
+
+.artist-price-info {
+  background: rgba(255, 33, 74, 0.05);
+  padding: 20px;
+  border-radius: 12px;
+  text-align: right;
+}
+
+.price-amount {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.price-label {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 5px;
+}
+
+.artist-biography {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 30px;
+}
+
+.artist-section {
+  margin-bottom: 30px;
+}
+
+.section-title {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-bottom: 15px;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #555;
+  transition: all 0.2s ease;
+}
+
+.tag:hover {
+  background: rgba(0, 0, 0, 0.08);
+}
+
+.booking-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.book-artist-button {
+  background: var(--primary);
+  color: white;
+  border: none;
+  padding: 15px 40px;
+  border-radius: 12px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.book-artist-button:hover {
+  background: var(--secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(255, 33, 74, 0.2);
+}
+
+.name-and-badge {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.mainstream-badge {
+  position: relative;
+  background: rgba(255, 33, 74, 0.1);
+  padding: 4px 12px;
+  border-radius: 4px;
+  display: inline-flex;
+  align-items: center;
+}
+
+.mainstream-badge span {
+  color: var(--primary);
+  font-weight: 500;
+  font-size: 0.9rem;
+  white-space: nowrap;
+  letter-spacing: 0.5px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .artist-hero-section {
+    height: 40vh;
+  }
+
+  .artist-details-container {
+    margin-top: -50px;
+  }
+
+  .artist-header {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .artist-price-info {
+    width: 100%;
+    text-align: left;
+  }
+
+  .artist-name {
+    font-size: 2rem;
+  }
+
+  .booking-section {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .book-artist-button {
+    width: 100%;
+  }
+
+  .name-and-badge {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .mainstream-badge {
+    padding: 3px 10px;
+  }
+
+  .mainstream-badge span {
+    font-size: 0.8rem;
+  }
+}

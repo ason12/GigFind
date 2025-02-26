@@ -1,0 +1,506 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+
+.book-now-page {
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  padding: 0;
+  color: var(--text-color);
+  background-color: var(--background);
+  overflow-x: hidden;
+}
+
+.book-now-content {
+  flex: 1;
+  padding: 40px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.booking-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+  margin-top: 0;
+}
+
+/* Artist Details Column */
+.artist-details-column {
+  position: sticky;
+  top: 20px;
+}
+
+.artist-profile-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.artist-cover {
+  width: 100%;
+  height: 300px;
+  object-fit: cover;
+}
+
+.artist-info {
+  padding: 30px;
+}
+
+.name-and-badge {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 10px;
+}
+
+.name-and-badge h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.mainstream-badge {
+  background: rgba(255, 33, 74, 0.1);
+  padding: 4px 12px;
+  border-radius: 4px;
+}
+
+.mainstream-badge span {
+  color: var(--primary);
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.real-name {
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.price-info {
+  background: rgba(255, 33, 74, 0.05);
+  padding: 15px;
+  border-radius: 12px;
+  display: inline-block;
+  margin-bottom: 20px;
+}
+
+.price-amount {
+  display: block;
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.price-label {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.artist-biography {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #444;
+  margin-bottom: 30px;
+}
+
+.tags-section {
+  margin-bottom: 25px;
+}
+
+.tags-section h3 {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.tags-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.tag {
+  background: rgba(0, 0, 0, 0.05);
+  padding: 8px 16px;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  color: #555;
+}
+
+.availability-info {
+  font-size: 1rem;
+  color: #666;
+  margin-top: 20px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+/* Booking Form Column */
+.booking-form-column {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+}
+
+.manager-details,
+.booking-form {
+  background: white;
+  padding: 30px;
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.manager-details h2,
+.booking-form h2 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+.manager-info p {
+  margin: 12px 0;
+  font-size: 1rem;
+  color: #444;
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  transition: all 0.3s ease;
+  background-color: white !important;
+  color: #333;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #666;
+  font-weight: 400;
+}
+
+.form-group input:active,
+.form-group input:focus,
+.form-group textarea:active,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(255, 33, 74, 0.1);
+  background-color: white !important;
+}
+
+/* Remove any browser-specific styling for email inputs */
+.form-group input[type="email"] {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+/* Remove autofill background color */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px white inset !important;
+  -webkit-text-fill-color: #333 !important;
+}
+
+.payment-methods {
+  margin-top: 30px;
+}
+
+.payment-methods h3 {
+  font-size: 1.2rem;
+  margin-bottom: 15px;
+}
+
+.payment-options {
+  display: flex;
+  gap: 15px;
+}
+
+.payment-btn {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  background: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+  font-size: 1rem;
+}
+
+.payment-btn.selected {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 30px;
+}
+
+.submit-btn:hover {
+  background: var(--secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 33, 74, 0.2);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .booking-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .artist-details-column {
+    position: relative;
+    top: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  .book-now-content {
+    padding: 20px;
+  }
+
+  .name-and-badge {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .name-and-badge h1 {
+    font-size: 1.8rem;
+  }
+
+  .payment-options {
+    flex-direction: column;
+  }
+
+  .payment-btn {
+    width: 100%;
+  }
+}
+
+/* Date input styling */
+.date-group {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.date-group label {
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.date-group input[type="date"] {
+  padding: 12px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+  background-color: #f8f9fa;
+}
+
+.date-group input[type="date"]::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+  padding: 5px;
+  filter: invert(0.5);
+}
+
+.date-group input[type="date"]:hover {
+  border-color: var(--primary);
+}
+
+.date-group input[type="date"]:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(255, 33, 74, 0.1);
+  background-color: white;
+}
+
+.book-now-header {
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  padding: 60px 20px;
+  color: white;
+  text-align: center;
+  margin-top: 60px;
+}
+
+.header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header-content h1 {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 15px;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+.header-content p {
+  font-size: 1.2rem;
+  opacity: 0.9;
+  margin-bottom: 30px;
+  animation: fadeInUp 0.6s ease-out 0.2s backwards;
+}
+
+.booking-steps {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 30px;
+  animation: fadeInUp 0.6s ease-out 0.4s backwards;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+}
+
+.step-number {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.step-text {
+  font-size: 0.9rem;
+  font-weight: 500;
+  opacity: 0.9;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .book-now-header {
+    padding: 40px 20px;
+    margin-top: 40px;
+  }
+
+  .header-content h1 {
+    font-size: 2rem;
+  }
+
+  .header-content p {
+    font-size: 1rem;
+  }
+
+  .booking-steps {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .step {
+    flex-direction: row;
+    gap: 15px;
+  }
+}
+
+.manager-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 20px;
+}
+
+.action-btn {
+  flex: 1;
+  padding: 10px 20px;
+  border-radius: 8px;
+  text-decoration: none;
+  text-align: center;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.call-btn {
+  background-color: var(--primary);
+  color: white;
+}
+
+.mail-btn {
+  background-color: #f8f9fa;
+  color: var(--text-color);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.call-btn:hover {
+  background-color: var(--secondary);
+  color: white;
+}
+
+.mail-btn:hover {
+  background-color: #e9ecef;
+  color: var(--text-color);
+}
