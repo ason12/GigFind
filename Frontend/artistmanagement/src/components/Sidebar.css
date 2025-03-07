@@ -1,0 +1,378 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap");
+@import "../assets/root.css";
+
+/* Sidebar Styles */
+.sidebar {
+  width: 280px;
+  background-color: white;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  height: 100vh;
+  z-index: 10;
+  border-right: 1px solid #f0f0f0;
+  font-family: "Poppins", sans-serif;
+  transition: width 0.3s ease;
+}
+
+.sidebar-header {
+  padding: 10px 20px;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  height: 70px;
+  box-sizing: border-box;
+}
+
+.logo-container {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin-top: 25px;
+  margin-right: 40px;
+}
+
+.sidebar-logo {
+  height: 50px;
+  width: auto;
+  transition: all 0.3s ease;
+}
+
+.small-logo {
+  width: 40px;
+  height: 40px;
+  background-color: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.company-name {
+  display: none;
+}
+
+.sidebar-nav {
+  flex: 1;
+  padding: 16px 0;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100vh - 80px);
+}
+
+.nav-items {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar-nav li {
+  padding: 12px 24px;
+  margin: 4px 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  color: #333;
+  font-weight: 400;
+}
+
+.sidebar-nav li:hover {
+  background-color: rgba(255, 33, 74, 0.05);
+  color: var(--primary);
+}
+
+.sidebar-nav li.active {
+  background-color: rgba(255, 33, 74, 0.1);
+  color: var(--primary);
+  font-weight: 500;
+}
+
+.sidebar-nav li svg {
+  width: 20px;
+  height: 20px;
+  margin-right: 12px;
+  transition: all 0.3s ease;
+}
+
+.sidebar-nav li:hover svg {
+  /* transform: scale(1.1); */
+}
+
+.sidebar-nav li span {
+  font-size: 15px;
+  transition: opacity 0.3s ease, display 0.3s ease;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  border-top: 1px solid #f0f0f0;
+  padding-top: 16px;
+}
+
+.logout-item {
+  color: #ff2149 !important;
+  font-weight: 500;
+  list-style: none;
+}
+
+.logout-item:hover {
+  background-color: rgba(255, 33, 74, 0.1) !important;
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+  .sidebar {
+    width: 80px;
+    overflow: hidden;
+  }
+
+  .sidebar-logo {
+    height: 32px;
+  }
+
+  .sidebar-nav li span {
+    display: none;
+  }
+
+  .sidebar-nav li {
+    justify-content: center;
+    padding: 16px;
+  }
+
+  .sidebar-nav li svg {
+    margin-right: 0;
+    width: 24px;
+    height: 24px;
+  }
+}
+
+@media (max-width: 576px) {
+  .sidebar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    z-index: 100;
+    background-color: white;
+    border-top: 1px solid #f0f0f0;
+    border-right: none;
+  }
+
+  .sidebar-header {
+    display: none;
+  }
+
+  .sidebar-nav {
+    padding: 0;
+    height: 60px;
+  }
+
+  .nav-items {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .sidebar-nav li {
+    margin: 0;
+    padding: 8px 0;
+    border-radius: 0;
+    flex: 1;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .sidebar-footer {
+    display: none;
+  }
+}
+
+/* Add more spacing between nav items */
+.nav-items li {
+  margin-bottom: 8px;
+}
+
+/* Make the active item's background color match the pink in the image */
+.sidebar-nav li.active {
+  background-color: #fff1f3; /* Lighter pink background for active item */
+}
+
+/* Minimized Sidebar Styles */
+.sidebar.minimized {
+  width: 80px;
+  overflow: hidden;
+  transition: width 0.3s ease;
+  cursor: pointer; /* Indicate it's clickable */
+}
+
+.sidebar.minimized .sidebar-logo {
+  height: 30px; /* Smaller size for minimized state */
+  width: auto;
+}
+
+.sidebar.minimized .sidebar-nav li span {
+  display: none;
+}
+
+.sidebar.minimized .sidebar-nav li {
+  justify-content: center;
+  padding: 16px;
+}
+
+.sidebar.minimized .sidebar-nav li svg {
+  margin-right: 0;
+  width: 24px;
+  height: 24px;
+}
+
+/* Move toggle button to header section */
+.toggle-button-container {
+  position: absolute;
+  top: 20px; /* Position within the header */
+  right: 20px; /* Position on the right side of header */
+  z-index: 15;
+}
+
+.sidebar.minimized .toggle-button-container {
+  right: 20px; /* Keep consistent positioning when minimized */
+}
+
+/* Toggle Button Styles - White square with rounded corners */
+.toggle-button {
+  width: 32px;
+  height: 32px;
+  background-color: white;
+  border: 1px solid #eaeaea;
+  border-radius: 8px; /* Rounded corners instead of circle */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0;
+  outline: none;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.toggle-button:hover {
+  background-color: #f9f9f9;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
+}
+
+.toggle-button:active {
+  transform: scale(0.95);
+}
+
+.toggle-button svg {
+  width: 14px;
+  height: 14px;
+  color: var(--primary); /* Theme color for the icon */
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .toggle-button-container {
+    display: none;
+  }
+}
+
+/* For minimized state, we need to adjust the centering */
+.sidebar.minimized .sidebar-header {
+  justify-content: center; /* Center only when minimized */
+}
+
+.sidebar.minimized .logo-container {
+  justify-content: center;
+  margin-top: 25px;
+  margin-right: 0; /* Reset margin when minimized */
+}
+
+/* Add a subtle hover effect to hint at interaction */
+.sidebar.minimized:hover {
+  background-color: #fafafa;
+}
+
+/* Mobile sidebar styles */
+.sidebar.mobile {
+  width: 80px !important;
+  overflow: hidden;
+  transition: none; /* No transition needed for mobile */
+}
+
+.sidebar.mobile .sidebar-nav li span {
+  display: none;
+}
+
+.sidebar.mobile .toggle-button-container {
+  display: none; /* Hide toggle button on mobile */
+}
+
+.sidebar.mobile .sidebar-header {
+  justify-content: center;
+  padding: 15px 10px;
+}
+
+.sidebar.mobile .logo-container {
+  justify-content: center;
+}
+
+/* Adjust content for mobile sidebar */
+.sidebar.mobile ~ .main-content,
+.sidebar.mobile ~ .dashboard-content {
+  margin-left: 80px !important;
+  width: calc(100% - 80px) !important;
+}
+
+@media (max-width: 576px) {
+  .sidebar.mobile ~ .main-content,
+  .sidebar.mobile ~ .dashboard-content {
+    margin-left: 0 !important;
+    width: 100% !important;
+    margin-bottom: 60px;
+  }
+
+  .sidebar.mobile {
+    bottom: 0;
+    width: 100% !important;
+    height: 60px;
+    z-index: 1000;
+    position: fixed;
+  }
+
+  .sidebar.mobile .sidebar-header {
+    display: none;
+  }
+
+  .sidebar.mobile .sidebar-nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    height: 100%;
+  }
+
+  .sidebar.mobile .sidebar-nav li {
+    margin: 0;
+    padding: 0 10px;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .sidebar.mobile .sidebar-nav li svg {
+    margin-right: 0;
+  }
+}

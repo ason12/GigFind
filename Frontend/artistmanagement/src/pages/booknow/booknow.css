@@ -144,6 +144,39 @@
   border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.view-profile-btn {
+  display: block;
+  width: 100%;
+  padding: 14px 0;
+  margin-top: 20px;
+  background-color: var(--primary);
+  color: white;
+  border: 1px solid var(--primary);
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.view-profile-btn:hover {
+  background-color: var(--secondary);
+  border-color: var(--secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(255, 33, 74, 0.2);
+  color: white;
+}
+
+.view-profile-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(255, 33, 74, 0.15);
+}
+
 /* Booking Form Column */
 .booking-form-column {
   display: flex;
@@ -241,22 +274,46 @@ input:-webkit-autofill:active {
   gap: 15px;
 }
 
+.payment-logo {
+  max-height: 40px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* Specific adjustment for eSewa logo */
+img[alt="eSewa"].payment-logo {
+  max-height: 50px; /* Increased from 40px */
+  margin: -5px 0; /* Slight vertical adjustment if needed */
+}
+
 .payment-btn {
   flex: 1;
-  padding: 12px;
+  padding: 20px;
+  height: 80px;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: 10px;
   background: white;
   cursor: pointer;
   transition: all 0.3s ease;
   font-family: "Poppins", sans-serif;
-  font-size: 1rem;
+  font-size: 1.1rem;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .payment-btn.selected {
-  background: var(--primary);
-  color: white;
-  border-color: var(--primary);
+  background: #f8f9fa;
+  border: 2px solid #4a4a4a;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transform: translateY(-2px);
+}
+
+.payment-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
 }
 
 .submit-btn {
@@ -271,12 +328,43 @@ input:-webkit-autofill:active {
   cursor: pointer;
   transition: all 0.3s ease;
   margin-top: 30px;
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
 }
 
-.submit-btn:hover {
+.submit-btn:disabled {
+  background: rgba(255, 33, 74, 0.3);
+  border: 1px solid rgba(255, 33, 74, 0.2);
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  color: rgba(255, 255, 255, 0.8);
+  position: relative;
+}
+
+.submit-btn:disabled::after {
+  content: "Please fill required fields";
+  position: absolute;
+  bottom: -30px;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--primary);
+  font-weight: 400;
+  opacity: 0.8;
+}
+
+.submit-btn:hover:not(:disabled) {
   background: var(--secondary);
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(255, 33, 74, 0.2);
+}
+
+.submit-btn:active:not(:disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(255, 33, 74, 0.15);
 }
 
 @keyframes fadeIn {
@@ -463,15 +551,22 @@ input:-webkit-autofill:active {
   }
 }
 
-.manager-actions {
+.manager-actions-container {
   display: flex;
+  flex-direction: column;
   gap: 15px;
   margin-top: 20px;
 }
 
+.manager-actions-row {
+  display: flex;
+  gap: 15px;
+  width: 100%;
+}
+
 .action-btn {
   flex: 1;
-  padding: 10px 20px;
+  padding: 12px 20px;
   border-radius: 8px;
   text-decoration: none;
   text-align: center;
@@ -479,8 +574,12 @@ input:-webkit-autofill:active {
   transition: all 0.3s ease;
 }
 
+.full-width {
+  width: 100%;
+}
+
 .call-btn {
-  background-color: var(--primary);
+  background-color: #4a4a4a;
   color: white;
 }
 
@@ -490,17 +589,28 @@ input:-webkit-autofill:active {
   border: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.message-btn {
+  background-color: var(--primary);
+  color: white;
+  padding: 14px 20px;
+  font-size: 1.05rem;
+}
+
 .action-btn:hover {
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: white;
 }
 
 .call-btn:hover {
-  background-color: var(--secondary);
-  color: white;
+  background-color: #333333;
 }
 
 .mail-btn:hover {
   background-color: #e9ecef;
   color: var(--text-color);
+}
+
+.message-btn:hover {
+  background-color: var(--secondary);
 }

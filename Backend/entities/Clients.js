@@ -20,25 +20,15 @@ const Clients = new EntitySchema({
       length: 255,
       nullable: false,
     },
-    first_name: {
+    name: {
       type: "varchar",
       length: 100,
       nullable: false,
-    },
-    last_name: {
-      type: "varchar",
-      length: 100,
-      nullable: true,
     },
     phone: {
       type: "varchar",
       length: 50,
       nullable: true,
-    },
-    company: {
-      type: "varchar",
-      length: 255,
-      nullable: true, // Used for corporate clients
     },
     created_at: {
       type: "timestamp",

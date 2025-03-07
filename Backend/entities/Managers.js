@@ -20,16 +20,12 @@ const Managers = new EntitySchema({
       length: 255,
       nullable: false,
     },
-    first_name: {
+    name: {
       type: "varchar",
       length: 100,
-      nullable: true,
+      nullable: false,
     },
-    last_name: {
-      type: "varchar",
-      length: 100,
-      nullable: true,
-    },
+    
     company_name: {
       type: "varchar",
       length: 255,

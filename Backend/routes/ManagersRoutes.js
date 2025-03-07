@@ -1,26 +1,20 @@
 const express = require("express");
 const router = express.Router();
-const {
-  getAllManagers,
-  getManagerById,
-  createManager,
-  updateManager,
-  deleteManager,
-} = require("../controller/ManagersController");
+const managersController = require("../controller/ManagersController");
 
-// GET all managers
-router.get("/", getAllManagers);
+// Create a new manager
+router.post("/", managersController.create);
 
-// GET single manager by ID
-router.get("/:id", getManagerById);
+// Get all managers
+router.get("/", managersController.getAll);
 
-// POST new manager
-router.post("/", createManager);
+// Get manager by ID
+router.get("/:id", managersController.getOne);
 
-// PUT/update manager
-router.put("/:id", updateManager);
+// Update manager
+router.put("/:id", managersController.update);
 
-// DELETE manager
-router.delete("/:id", deleteManager);
+// Delete manager
+router.delete("/:id", managersController.delete);
 
 module.exports = router;

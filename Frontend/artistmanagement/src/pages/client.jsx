@@ -95,9 +95,64 @@ const Client = () => {
     }
   };
 
+  const handleViewProfile = (e, artist) => {
+    e.preventDefault();
+    console.log("View Profile clicked!");
+
+    if (!artist) {
+      console.error("No artist data provided");
+      return;
+    }
+
+    // Try to find any property that might be an ID
+    const possibleIdProperties = Object.keys(artist).find(
+      (key) =>
+        key.toLowerCase().includes("id") || key === "_id" || key === "artistId"
+    );
+
+    if (possibleIdProperties) {
+      const id = artist[possibleIdProperties];
+      console.log("Found ID:", id);
+      navigate(`/artists/${id}`);
+    } else {
+      console.error("Available properties:", Object.keys(artist));
+    }
+  };
+
+  const handleDirectBooking = (e, artist) => {
+    e.preventDefault();
+    console.log("Direct booking clicked!");
+
+    if (!artist) {
+      console.error("No artist data provided");
+      return;
+    }
+
+    // Try to find any property that might be an ID
+    const possibleIdProperties = Object.keys(artist).find(
+      (key) =>
+        key.toLowerCase().includes("id") || key === "_id" || key === "artistId"
+    );
+
+    if (possibleIdProperties) {
+      const id = artist[possibleIdProperties];
+      console.log("Found ID for booking:", id);
+      navigate(`/book-now/${id}`);
+    } else {
+      console.error("Available properties:", Object.keys(artist));
+    }
+  };
+
   const renderArtistCard = (artist, index) => {
     console.log("Rendering artist card:", artist); // Debug log
     console.log("Full artist object:", artist);
+
+    // Function to truncate biography text
+    const truncateBio = (text, maxLength = 150) => {
+      if (!text) return "";
+      if (text.length <= maxLength) return text;
+      return text.substring(0, maxLength) + "...";
+    };
 
     return (
       <div
@@ -126,7 +181,9 @@ const Client = () => {
             </div>
           </div>
           <div className="artist-info">
-            <p className="artist-description">{artist.biography}</p>
+            <p className="artist-description">
+              {truncateBio(artist.biography)}
+            </p>
             <div className="genres">
               <h4>Genres</h4>
               <div className="genre-tags">
@@ -143,14 +200,17 @@ const Client = () => {
                 ))}
               </div>
             </div>
+            <p className="availability">{artist.availability}</p>
           </div>
           <div className="card-footer">
-            <p className="availability">{artist.availability}</p>
             <button
-              onClick={(e) => {
-                console.log("Button clicked"); // Debug log
-                handleBookNow(e, artist);
-              }}
+              onClick={(e) => handleViewProfile(e, artist)}
+              className="view-profile"
+            >
+              View Profile
+            </button>
+            <button
+              onClick={(e) => handleDirectBooking(e, artist)}
               className="book-now"
             >
               Book Now

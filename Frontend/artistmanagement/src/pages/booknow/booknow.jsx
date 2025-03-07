@@ -1,13 +1,16 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import "./booknow.css";
 import "../../assets/root.css";
 import Navbar from "../../components/navbar";
 import Footer from "../../components/footer";
 import defaultCoverPhoto from "../../assets/imgs/hero2.jpg";
+import esewaLogo from "../../assets/imgs/esewa.png";
+import khaltiLogo from "../../assets/imgs/khalti-logo.png";
 
 const BookNow = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [artist, setArtist] = useState(null);
   const [loading, setLoading] = useState(true);
   const [paymentMethod, setPaymentMethod] = useState("");
@@ -52,6 +55,53 @@ const BookNow = () => {
     e.preventDefault();
     console.log("Booking details:", bookingDetails);
     console.log("Payment method:", paymentMethod);
+  };
+
+  // Add this function to check if form is valid
+  const isFormValid = () => {
+    return (
+      bookingDetails.name.trim() !== "" &&
+      bookingDetails.phone.trim() !== "" &&
+      bookingDetails.date.trim() !== "" &&
+      paymentMethod !== ""
+    );
+  };
+
+  const handleViewProfile = (e) => {
+    e.preventDefault();
+
+    if (!artist) {
+      console.error("No artist data available");
+      return;
+    }
+
+    console.log("Artist data:", artist);
+
+    // Try multiple ways to find the ID
+    let artistId = null;
+
+    if (artist._id) {
+      artistId = artist._id;
+    } else if (artist.id) {
+      artistId = artist.id;
+    } else {
+      // Try to find any property that might be an ID
+      const possibleIdProperties = Object.keys(artist).find(
+        (key) => key.toLowerCase().includes("id") || key === "_id"
+      );
+
+      if (possibleIdProperties) {
+        artistId = artist[possibleIdProperties];
+      }
+    }
+
+    if (artistId) {
+      console.log("Found artist ID:", artistId);
+      navigate(`/artists/${artistId}`);
+    } else {
+      console.error("Cannot navigate: artist ID is missing", artist);
+      console.log("Available properties:", Object.keys(artist));
+    }
   };
 
   if (loading) {
@@ -137,6 +187,12 @@ const BookNow = () => {
                 <div className="availability-info">
                   Availability: {artist.availability}
                 </div>
+                <button
+                  onClick={handleViewProfile}
+                  className="view-profile-btn"
+                >
+                  View Full Profile
+                </button>
               </div>
             </div>
           </div>
@@ -156,16 +212,24 @@ const BookNow = () => {
                   <strong>Phone:</strong> +977 9876543210
                 </p>
               </div>
-              <div className="manager-actions">
-                <a href="tel:+9779876543210" className="action-btn call-btn">
-                  Call Now
-                </a>
+              <div className="manager-actions-container">
                 <a
-                  href="mailto:john.smith@artistmanager.com"
-                  className="action-btn mail-btn"
+                  href="sms:+9779876543210"
+                  className="action-btn message-btn full-width"
                 >
-                  Mail Now
+                  Message
                 </a>
+                <div className="manager-actions-row">
+                  <a href="tel:+9779876543210" className="action-btn call-btn">
+                    Call Now
+                  </a>
+                  <a
+                    href="mailto:john.smith@artistmanager.com"
+                    className="action-btn mail-btn"
+                  >
+                    Mail Now
+                  </a>
+                </div>
               </div>
             </div>
 
@@ -235,7 +299,7 @@ const BookNow = () => {
                     }`}
                     onClick={() => setPaymentMethod("esewa")}
                   >
-                    eSewa
+                    <img src={esewaLogo} alt="eSewa" className="payment-logo" />
                   </button>
                   <button
                     type="button"
@@ -244,12 +308,20 @@ const BookNow = () => {
                     }`}
                     onClick={() => setPaymentMethod("khalti")}
                   >
-                    Khalti
+                    <img
+                      src={khaltiLogo}
+                      alt="Khalti"
+                      className="payment-logo"
+                    />
                   </button>
                 </div>
               </div>
 
-              <button type="submit" className="submit-btn">
+              <button
+                type="submit"
+                className="submit-btn"
+                disabled={!isFormValid()}
+              >
                 Proceed to Payment
               </button>
             </form>

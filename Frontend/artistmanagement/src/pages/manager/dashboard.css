@@ -1,0 +1,66 @@
+/* Reset all potential background influences */
+html,
+body,
+#root,
+div[id="root"] {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background: #fafafa !important; /* Changed from red to #fafafa */
+}
+
+/* Force the dashboard layout to have the background */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh;
+  width: 100vw; /* Use viewport width */
+  background-color: #fafafa !important; /* Changed from red to #fafafa */
+  font-family: "Poppins", sans-serif;
+  overflow-x: hidden; /* Prevent horizontal scrolling */
+  position: relative;
+}
+
+/* Ensure content is visible and properly positioned */
+.dashboard-content {
+  flex: 1;
+  margin-left: 280px; /* Space for sidebar */
+  padding: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: calc(100vw - 280px); /* Use viewport width calculation */
+  background-color: #fafafa !important; /* Changed from red to #fafafa */
+  transition: margin-left 0.3s ease, width 0.3s ease; /* Add transition */
+}
+
+/* Adjust content when sidebar is minimized */
+.sidebar.minimized ~ .dashboard-content {
+  margin-left: 80px;
+  width: calc(100vw - 80px);
+}
+
+.managers-dashboard-text {
+  font-size: 32px;
+  font-weight: 700;
+  color: #333333; /* Changed to dark gray for better contrast on light background */
+  text-align: center;
+  width: 100%;
+  padding: 40px 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+  .dashboard-content {
+    margin-left: 80px;
+    width: calc(100vw - 80px);
+  }
+}
+
+@media (max-width: 576px) {
+  .dashboard-content {
+    margin-left: 0;
+    width: 100vw;
+    margin-bottom: 60px;
+  }
+}

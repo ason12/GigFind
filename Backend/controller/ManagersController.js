@@ -1,104 +1,105 @@
 const AppDataSource = require("../config/data-source");
 const Managers = require("../entities/Managers");
 
+const managersRepository = AppDataSource.getRepository(Managers);
 
-// Get all managers
-const getAllManagers = async (req, res) => {
-  try {
-    const managerRepository = AppDataSource.getRepository(Managers);
-    const managers = await managerRepository.find({
-      relations: ["artists"], // Include artist relations
-    });
-    res.status(200).json(managers);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
-  }
-};
+class ManagersController {
+  // Create a new manager
+  async create(req, res) {
+    try {
+      const { email, password, name, company_name, phone } = req.body;
 
-// Get single manager by ID
-const getManagerById = async (req, res) => {
-  try {
-    const managerRepository = AppDataSource.getRepository(Managers);
-    const manager = await managerRepository.findOne({
-      where: { m_id: parseInt(req.params.id) },
-      relations: ["artists"],
-    });
+      // Validate required fields
+      if (!email || !password || !name) {
+        return res.status(400).json({
+          message: "Email, password, and name are required fields",
+        });
+      }
 
-    if (!manager) {
-      return res.status(404).json({ message: "Manager not found" });
+      // Store password directly without hashing
+      const manager = await managersRepository.save({
+        email,
+        password, // No longer hashing the password
+        name,
+        company_name: company_name || null,
+        phone: phone || null,
+      });
+
+      // Remove password from response
+      const { password: _, ...managerData } = manager;
+
+      res.status(201).json(managerData);
+    } catch (error) {
+      console.error("Error creating manager:", error);
+      res.status(500).json({ message: error.message });
     }
-    res.status(200).json(manager);
-  } catch (error) {
-    res.status(500).json({ message: error.message });
   }
-};
 
-// Create new manager
-const createManager = async (req, res) => {
-  try {
-    const managerRepository = AppDataSource.getRepository(Managers);
-    const newManager = managerRepository.create({
-      name: req.body.name,
-      email: req.body.email,
-      phone: req.body.phone,
-      company: req.body.company,
-      experience_years: req.body.experience_years,
-      specialization: req.body.specialization || [],
-      active: req.body.active !== undefined ? req.body.active : true,
-    });
-
-    const savedManager = await managerRepository.save(newManager);
-    res.status(201).json(savedManager);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
-  }
-};
-
-// Update manager
-const updateManager = async (req, res) => {
-  try {
-    const managerRepository = AppDataSource.getRepository(Managers);
-    const manager = await managerRepository.findOne({
-      where: { m_id: parseInt(req.params.id) },
-    });
-
-    if (!manager) {
-      return res.status(404).json({ message: "Manager not found" });
+  // Get all managers
+  async getAll(req, res) {
+    try {
+      const managers = await managersRepository.find();
+      res.json(managers);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
     }
-
-    // Update only provided fields
-    Object.assign(manager, req.body);
-
-    const updatedManager = await managerRepository.save(manager);
-    res.status(200).json(updatedManager);
-  } catch (error) {
-    res.status(400).json({ message: error.message });
   }
-};
 
-// Delete manager
-const deleteManager = async (req, res) => {
-  try {
-    const managerRepository = AppDataSource.getRepository(Managers);
-    const manager = await managerRepository.findOne({
-      where: { m_id: parseInt(req.params.id) },
-    });
+  // Get manager by ID
+  async getOne(req, res) {
+    try {
+      const manager = await managersRepository.findOne({
+        where: { m_id: parseInt(req.params.id) },
+      });
 
-    if (!manager) {
-      return res.status(404).json({ message: "Manager not found" });
+      if (!manager) {
+        return res.status(404).json({ message: "Manager not found" });
+      }
+
+      res.json(manager);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
     }
-
-    await managerRepository.remove(manager);
-    res.status(200).json({ message: "Manager deleted successfully" });
-  } catch (error) {
-    res.status(500).json({ message: error.message });
   }
-};
 
-module.exports = {
-  getAllManagers,
-  getManagerById,
-  createManager,
-  updateManager,
-  deleteManager,
-};
+  // Update manager
+  async update(req, res) {
+    try {
+      const manager = await managersRepository.findOne({
+        where: { m_id: parseInt(req.params.id) },
+      });
+
+      if (!manager) {
+        return res.status(404).json({ message: "Manager not found" });
+      }
+
+      // No longer hashing password on update
+      await managersRepository.update(req.params.id, req.body);
+
+      const updatedManager = await managersRepository.findOne({
+        where: { m_id: parseInt(req.params.id) },
+      });
+
+      res.json(updatedManager);
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+
+  // Delete manager
+  async delete(req, res) {
+    try {
+      const result = await managersRepository.delete(req.params.id);
+
+      if (result.affected === 0) {
+        return res.status(404).json({ message: "Manager not found" });
+      }
+
+      res.json({ message: "Manager deleted successfully" });
+    } catch (error) {
+      res.status(500).json({ message: error.message });
+    }
+  }
+}
+
+module.exports = new ManagersController();

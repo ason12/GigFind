@@ -5,6 +5,7 @@ const AppDataSource = require("./config/data-source");
 
 const artistRoutes = require("./routes/ArtistsRoutes");
 const managerRoutes = require("./routes/ManagersRoutes");
+const clientRoutes = require("./routes/ClientsRoutes");
 
 const app = express();
 const PORT = 5000;
@@ -15,6 +16,7 @@ app.use(bodyParser.json());
 
 app.use("/api/artists", artistRoutes);
 app.use("/api/managers", managerRoutes);
+app.use("/api/clients", clientRoutes);
 // Add this route before other routes to test
 app.get("/test", (req, res) => {
   res.json({ message: "Server is running!" });
